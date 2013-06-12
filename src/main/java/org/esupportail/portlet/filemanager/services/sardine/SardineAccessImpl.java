@@ -168,9 +168,6 @@ public class SardineAccessImpl extends FsAccess implements DisposableBean {
 		// lid must be a relative path from rootPath
 		String lid = resource.getHref().getRawPath();
 		
-		log.debug("UVHC::resourceAsJsTreeFile::lid::"+lid);
-		log.debug("UVHC::resourceAsJsTreeFile::rootPath::"+this.rootPath);
-
 		if (lid.startsWith(this.rootPath))
 			lid = lid.substring(rootPath.length());
 		if (lid.startsWith("/"))
@@ -194,11 +191,8 @@ public class SardineAccessImpl extends FsAccess implements DisposableBean {
 		
 		try {
 			if (folderDetails && resource.isDirectory()) {
-				log.debug("UVHC::resourceAsJsTreeFile::folderDetails && resource.isDirectory::lid::"+lid);
-				log.debug("UVHC::resourceAsJsTreeFile::folderDetails && resource.isDirectory::this.uri::"+this.uri);
 				List<DavResource> children;
-				children = root.list(this.uri + lid);
-				log.debug("UVHC::resourceAsJsTreeFile::folderDetails && resource.isDirectory::children::"+children);
+					children = root.list(this.uri + lid);
 				long totalSize = 0;
 				long fileCount = 0;
 				long folderCount = -1; // Don't count the parent folder
@@ -254,8 +248,6 @@ public class SardineAccessImpl extends FsAccess implements DisposableBean {
 			if ("folder".equals(type)) {
 				if (!parentPath.endsWith("/"))
 					parentPath=parentPath + "/";
-				log.debug("UVHC::createFile::parentPath::"+parentPath);
-				log.debug("UVHC::createFile::uri::"+this.uri + parentPath + title);	
 				root.createDirectory(this.uri + URLEncoder.encode(title, "UTF-8"));
 			} else {
 				log.warn("Can't create files");
@@ -374,7 +366,7 @@ public class SardineAccessImpl extends FsAccess implements DisposableBean {
 			if (!dir.endsWith("/"))
 				dir=dir + "/";
 			
-			String file = this.uri + dir + URLEncoder.encode(filename, "UTF-8");
+			String file = this.uri + URLEncoder.encode(filename, "UTF-8");
 			if (root.exists(file)) {
 				log.error("Can't overwrite file '" + file + "'");
 				return false;
