@@ -168,6 +168,9 @@ public class SardineAccessImpl extends FsAccess implements DisposableBean {
 		// lid must be a relative path from rootPath
 		String lid = resource.getHref().getRawPath();
 		
+		log.debug("UVHC::resourceAsJsTreeFile::lid::"+lid);
+		log.debug("UVHC::resourceAsJsTreeFile::rootPath::"+this.rootPath);
+
 		if (lid.startsWith(this.rootPath))
 			lid = lid.substring(rootPath.length());
 		if (lid.startsWith("/"))
