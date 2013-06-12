@@ -221,6 +221,7 @@ public class ServersAccessService implements DisposableBean, IServersAccessServi
 		} else {
 			// get drive or folder or file
 			String path = getLocalDir(dir);
+			log.debug("UVHC::ServerAccesService::get::path::"+path);
 			JsTreeFile jsTreeFile = this.getFsAccess(driveName, userParameters).get(path, userParameters, folderDetails, fileDetails);
 			DrivesCategory dCat = this.drivesCategories.get(category);
 			jsTreeFile.setCategory(category, dCat.getIcon());
