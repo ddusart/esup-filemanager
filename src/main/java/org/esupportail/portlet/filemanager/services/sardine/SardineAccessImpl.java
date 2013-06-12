@@ -194,8 +194,11 @@ public class SardineAccessImpl extends FsAccess implements DisposableBean {
 		
 		try {
 			if (folderDetails && resource.isDirectory()) {
+				log.debug("UVHC::resourceAsJsTreeFile::folderDetails && resource.isDirectory::lid::"+lid);
+				log.debug("UVHC::resourceAsJsTreeFile::folderDetails && resource.isDirectory::this.uri::"+this.uri);
 				List<DavResource> children;
-					children = root.list(this.uri + lid);
+				children = root.list(this.uri + lid);
+				log.debug("UVHC::resourceAsJsTreeFile::folderDetails && resource.isDirectory::children::"+children);
 				long totalSize = 0;
 				long fileCount = 0;
 				long folderCount = -1; // Don't count the parent folder
