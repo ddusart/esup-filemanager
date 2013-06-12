@@ -248,7 +248,7 @@ public class SardineAccessImpl extends FsAccess implements DisposableBean {
 			if ("folder".equals(type)) {
 				if (!parentPath.endsWith("/"))
 					parentPath=parentPath + "/";
-				root.createDirectory(this.uri + parentPath + URLEncoder.encode(title, "UTF-8"));
+				root.createDirectory(this.uri + URLEncoder.encode(title, "UTF-8"));
 			} else {
 				log.warn("Can't create files");
 			}
